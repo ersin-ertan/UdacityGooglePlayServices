@@ -41,4 +41,22 @@
 		android:layout_centerHorizontal = "true" android:layout_height = "wrap_content" android:layout_width = "wrap_content"
 		android:text = "@string/filler" android:textAppearance = "?android:attr/textAppearanceLarge"
 		/>
+
+	<TextView
+		android:layout_width = "wrap_content"
+		android:layout_height = "wrap_content"
+		android:textAppearance = "?android:attr/textAppearanceLarge"
+		android:text = "Last Known Location"
+		android:id = "@+id/lblLastKnown"
+		android:layout_below = "@+id/lblLon" android:layout_alignParentLeft = "true" android:layout_alignParentStart = "true"
+		/>
+
+	<TextView
+		android:layout_width = "wrap_content"
+		android:layout_height = "wrap_content"
+		android:textAppearance = "?android:attr/textAppearanceLarge"
+		android:text = "@string/filler"
+		android:id = "@+id/txtLastKnown"
+		android:layout_alignTop = "@+id/lblLastKnown" android:layout_toRightOf = "@+id/lblLastKnown" android:layout_toEndOf = "@+id/lblLastKnown"
+		/>
 </RelativeLayout>
