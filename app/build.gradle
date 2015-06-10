@@ -6,7 +6,7 @@ android{
 
 	defaultConfig{
 		applicationId "com.nullcognition.udacitygoogleplayservices"
-		minSdkVersion 22
+		minSdkVersion 14
 		targetSdkVersion 22
 		versionCode 1
 		versionName "1.0"
@@ -21,9 +21,7 @@ android{
 
 dependencies{
 	compile fileTree(dir: 'libs', include: ['*.jar'])
-	compile 'com.google.android.gms:play-services:7+'
+	compile 'com.google.android.gms:play-services:7.5+' // original:6.5+
+//	compile 'com.google.android.gms:play-services-location:6.5+' // trying this to try to get the location services to work
 }
 
-task someT(description: "MyDescription", group: "MyGroup"){
-	doLast{ println "someT" }
-}
