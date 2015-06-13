@@ -49,22 +49,20 @@ public class ActivityMain extends Activity implements GoogleApiClient.Connection
 	@Override
 	protected void onStart(){
 		super.onStart();
-		// Connect the client.
 		googleApiClient.connect();
 	}
 
 	@Override
 	protected void onStop(){
-		// Disconnecting the client invalidates it.
-		super.onStop();
 		if(googleApiClient.isConnected()){googleApiClient.disconnect();}
+		super.onStop();
 	}
 
 	@Override
 	public void onConnected(Bundle bundle){
 
 		continuousLocationUpdates();
-		lastKnownUpdate();
+		//lastKnownUpdate();
 	}
 	private void continuousLocationUpdates(){
 		locationRequest = LocationRequest.create();
