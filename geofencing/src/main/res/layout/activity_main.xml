@@ -13,11 +13,21 @@
 
 	<Button
 		android:id = "@+id/btn_addGeo"
-		android:layout_alignParentStart = "true"
 		android:layout_alignParentTop = "true"
 		android:layout_height = "wrap_content"
 		android:layout_width = "wrap_content"
-		android:onClick = "addGeofence"
+		android:onClick = "addGeofencesButtonHandler"
 		android:text = "@string/add_geofence"
 		/>
+
+	<Button
+		android:layout_width = "wrap_content"
+		android:layout_height = "wrap_content"
+		android:text = "Set Location"
+		android:id = "@+id/btn_setLo"
+		android:onClick="setLo"
+		android:layout_below = "@+id/btn_addGeo" android:layout_alignParentLeft = "true" android:layout_alignParentStart = "true"
+		/>
+
+
 </RelativeLayout>
