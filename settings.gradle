@@ -1,1 +1,1 @@
-include ':app', ':locationcontext', ':geofencing', ':testingcallbacks'
+include ':fusedlocation', ':locationcontext', ':geofencing', ':testingcallbacks', ':identity'

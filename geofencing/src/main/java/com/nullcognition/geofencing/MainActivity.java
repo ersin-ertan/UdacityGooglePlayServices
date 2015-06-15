@@ -185,7 +185,7 @@ public class MainActivity extends Activity implements
 	}
 
 	@Override
-	public void onConnectionFailed(ConnectionResult result){
+	public void onConnectionFailed(ConnectionResult result){ result.getErrorCode();
 		// Do something with result.getErrorCode());
 	}
 
