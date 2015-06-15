@@ -1,0 +1,20 @@
+<resources>
+	<string name = "app_name">AdMob</string>
+
+	<string name = "hello_world">Hello world!</string>
+	<string name = "action_settings">Settings</string>
+	<string name = "title_activity_banner">BannerActivity</string>
+
+	<string name = "banner_ad">Banner Ad</string>
+	<string name = "interstitial_ad">Interstitial Ad</string>
+
+	<string name = "banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+
+	<string name = "interstitial_load">Load Interstitial</string>
+	<string name = "interstitial_not_ready">Interstitial Not Ready</string>
+	<string name = "interstitial_loading">Loading Interstitial</string>
+	<string name = "interstitial_show">Show Interstitial</string>
+	<string name = "interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
+	<string name = "title_activity_interstitial">InterstitialActivity</string>
+
+</resources>

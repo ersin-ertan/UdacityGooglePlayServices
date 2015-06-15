@@ -1,1 +1,1 @@
-include ':fusedlocation', ':locationcontext', ':geofencing', ':testingcallbacks', ':identity'
+include ':fusedlocation', ':locationcontext', ':geofencing', ':testingcallbacks', ':identity', ':admob'
