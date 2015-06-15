@@ -26,6 +26,10 @@ import com.google.android.gms.plus.model.people.Person;
 // Email - email address for their account
 // Plus.Profiles.Emails.Read - email + other emails
 
+// one authorization equals multi device authorization
+// over the air downloads allows web site apps(with a certain rating) to allow free apps to be installed
+// on the android device
+
 public class MainActivity extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, View.OnClickListener{
 
 	public static final int State_Signed_In = 0;
@@ -33,7 +37,8 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
 	public static final int State_Progress = 2;
 	private int signInProgress = 1;
 
-	SignInButton signIn;
+	SignInButton signInGPlus;
+	Button signIn;
 	Button signOut;
 	Button revoke;
 	TextView textView;
@@ -52,8 +57,19 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
 				.build();
 	}
 
+	protected synchronized void createGoogleApiClientWithLimitedScope(){
+		googleApiClient = new GoogleApiClient.Builder(this)
+				.addApi(Plus.API, Plus.PlusOptions.builder().build())
+				.addScope(new Scope("email"))
+				.build();
+		// access to account but not people api so the PeopleApi.getCurrentPerson will return null
+		// you could use getAccountName(), clearDefaultAccount(), revokeAccessAndDisconnect
+		// thus replace the PeopleApi calls with the email scope alternatives and getAccountName for the email
+	}
+
 	@Override
 	public void onConnected(final Bundle bundle){
+		signInGPlus.setEnabled(false);
 		signIn.setEnabled(false);
 		signOut.setEnabled(true);
 		revoke.setEnabled(true);
@@ -98,6 +114,7 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
 
 	private void onSignedOut(){
 		// Update the UI to reflect that the user is signed out.
+		signInGPlus.setEnabled(true);
 		signIn.setEnabled(true);
 		signOut.setEnabled(false);
 		revoke.setEnabled(false);
@@ -159,6 +176,10 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
 					textView.setText("Signing In");
 					resolveSignInError();
 					break;
+				case R.id.btn_standard_signin:
+					textView.setText("Signing In Standard"); // doe every thing the same but build the google api builder with limited scope
+
+					break;
 			}
 		}
 	}
@@ -169,11 +190,13 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
 		setContentView(R.layout.activity_main);
 		createGoogleApiClient();
 
-		signIn = (SignInButton) findViewById(R.id.btn_sign_in);
+		signInGPlus = (SignInButton) findViewById(R.id.btn_sign_in);
+		signIn = (Button) findViewById(R.id.btn_standard_signin);
 		signOut = (Button) findViewById(R.id.btn_sign_out);
 		revoke = (Button) findViewById(R.id.btn_revoke);
 		textView = (TextView) findViewById(R.id.textView);
 
+		signInGPlus.setOnClickListener(this);
 		signIn.setOnClickListener(this);
 	}
 

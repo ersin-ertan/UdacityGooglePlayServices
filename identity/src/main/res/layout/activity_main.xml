@@ -23,8 +23,8 @@
 		android:layout_below = "@+id/textView"
 		android:layout_height = "wrap_content"
 		android:layout_width = "wrap_content"
-		android:text = "Sign Out"
 		android:onClick = "signOut"
+		android:text = "Sign Out"
 		/>
 
 	<Button
@@ -33,16 +33,29 @@
 		android:layout_centerHorizontal = "true"
 		android:layout_height = "wrap_content"
 		android:layout_width = "wrap_content"
-		android:text = "Revoke Access"
 		android:onClick = "revokeAccess"
+		android:text = "Revoke Access"
 		/>
 
 	<com.google.android.gms.common.SignInButton
-		android:enabled = "true" android:layout_height = "wrap_content"
+		android:enabled = "true" android:id = "@+id/btn_sign_in"
+		android:layout_alignParentStart = "true"
+		android:layout_below = "@+id/btn_sign_out" android:layout_height = "wrap_content"
 		android:layout_width = "wrap_content"
-		android:layout_below = "@+id/btn_sign_out" android:layout_alignParentStart = "true"
 		android:onClick = "onClick"
-		android:id = "@+id/btn_sign_in"
 		/>
+
+	<Button
+		android:background = "@drawable/button_custom"
+		android:id = "@+id/btn_standard_signin"
+		android:layout_below = "@+id/btn_revoke"
+		android:layout_height = "wrap_content"
+		android:layout_toEndOf = "@+id/btn_sign_in"
+		android:layout_toRightOf = "@+id/btn_sign_in"
+		android:layout_width = "wrap_content"
+		android:onClick="onClick"
+		android:text = "Sign In" android:textAllCaps = "true" android:textColor = "#FFFFFF"
+		/>
+
 
 </RelativeLayout>
