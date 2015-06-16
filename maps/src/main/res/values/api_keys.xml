@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name = "googleMapsApiKey">AIzaSyBx4WsrCwMyf75g95hM0DwWWO4oD7zJZ0U</string>
+	<string name="test">Aditional</string>
+</resources>
