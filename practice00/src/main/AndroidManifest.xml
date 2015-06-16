@@ -51,6 +51,10 @@
             android:label="@string/title_activity_login"
             android:windowSoftInputMode="adjustResize|stateHidden" >
         </activity>
+        <activity
+            android:name=".Main22Activity"
+            android:label="@string/title_activity_main22" >
+        </activity>
     </application>
 
 </manifest>
