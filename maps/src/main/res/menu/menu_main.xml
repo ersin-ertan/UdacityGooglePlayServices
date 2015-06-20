@@ -1,8 +1,22 @@
-<menu xmlns:android = "http://schemas.android.com/apk/res/android"
-      xmlns:tools = "http://schemas.android.com/tools"
-      tools:context = ".MainActivity">
-	<item android:id = "@+id/action_settings"
-	      android:title = "@string/action_settings"
-	      android:orderInCategory = "100"
-	      android:showAsAction = "never"/>
+<menu
+	tools:context = ".MainActivity"
+	xmlns:android = "http://schemas.android.com/apk/res/android"
+	xmlns:tools = "http://schemas.android.com/tools"
+	>
+	<item
+		android:id = "@+id/action_xml_map"
+		android:title = "@string/xml_map"
+		/>
+	<item
+		android:id = "@+id/action_moving_map"
+		android:orderInCategory = "100"
+		android:showAsAction = "never"
+		android:title = "@string/action_moving_map"
+		/>
+	<item
+		android:id = "@+id/action_pano"
+		android:orderInCategory = "100"
+		android:showAsAction = "never"
+		android:title = "@string/action_pano"
+		/>
 </menu>

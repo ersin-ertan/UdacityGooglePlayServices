@@ -4,4 +4,9 @@
 	<string name = "hello_world">Hello world!</string>
 	<string name = "action_settings">Settings</string>
 	<string name = "title_activity_map_xml">MapXml</string>
+	<string name = "action_moving_map">Moving map</string>
+	<string name = "xml_map">Xml Map</string>
+	<string name = "title_activity_moving_map">MovingMap</string>
+	<string name = "title_activity_street_view">StreetView</string>
+	<string name = "action_pano">Pano</string>
 </resources>

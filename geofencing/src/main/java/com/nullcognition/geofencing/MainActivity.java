@@ -30,7 +30,9 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class MainActivity extends Activity implements
-                                           GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, ResultCallback<Status>{
+                                           GoogleApiClient.ConnectionCallbacks,
+                                           GoogleApiClient.OnConnectionFailedListener,
+                                           ResultCallback<Status>{
 
 	protected ArrayList<Geofence> mGeofenceList;
 	protected GoogleApiClient mGoogleApiClient;

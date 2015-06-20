@@ -20,9 +20,19 @@ public class MainActivity extends Activity implements OnMapReadyCallback{
 	GoogleMap m_map;
 	boolean mapReady = false;
 
+	// easy debugging fast switch
+	private void switchActivity(){
+		startActivity(new Intent(this, StreetView.class));
+//		startActivity(new Intent(this, MovingMap.class));
+//		startActivity(new Intent(this, MapXml.class));
+
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		switchActivity();
+
 		setContentView(R.layout.activity_main);
 
 		Button btnMap = (Button) findViewById(R.id.btnMap);
@@ -71,8 +81,16 @@ public class MainActivity extends Activity implements OnMapReadyCallback{
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
 		int id = item.getItemId();
-		if(id == R.id.action_settings){
+		if(id == R.id.action_moving_map){
+			startActivity(new Intent(this, MovingMap.class));
+			return true;
+		}
+		else if(id == R.id.action_xml_map){
 			startActivity(new Intent(this, MapXml.class));
+			return true;
+		}
+		else if(id == R.id.action_pano){
+			startActivity(new Intent(this, StreetView.class));
 			return true;
 		}
 

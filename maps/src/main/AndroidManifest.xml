@@ -35,6 +35,14 @@
             android:name=".MapXml"
             android:label="@string/title_activity_map_xml" >
         </activity>
+        <activity
+            android:name=".MovingMap"
+            android:label="@string/title_activity_moving_map" >
+        </activity>
+        <activity
+            android:name=".StreetView"
+            android:label="@string/title_activity_street_view" >
+        </activity>
     </application>
 
 </manifest>
