@@ -8,3 +8,5 @@
 
 maps/src/main/res/values/api_keys.xml
 # added in the root gitignore as well to test if it still gets committed on subsequent commits
+
+analytics/src/main/res/values/analytics_id.xml
