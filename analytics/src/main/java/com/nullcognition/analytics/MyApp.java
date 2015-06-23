@@ -10,18 +10,25 @@ public class MyApp extends Application{
 
 	Tracker tracker;
 
-	public void startTracking(){
-		if(tracker == null){
-			GoogleAnalytics ga = GoogleAnalytics.getInstance(this);
-			tracker = ga.newTracker(R.xml.analytics_id);
-			ga.enableAutoActivityReports(this);
-			ga.getLogger().setLogLevel(Logger.LogLevel.VERBOSE);
-		}
-	}
+	@Override
+	public void onCreate(){
+		super.onCreate();
 
-	public Tracker getTracker(){
-		startTracking();
-		return tracker;
+		AnalyticCalls.init(this);
 	}
-
+//	public void startTracking(){
+//		// if low memory killer was to clean resources of the app, this would spawn a new one
+//		// also lazy instantiation, set on first need
+//		if(tracker == null){
+//			GoogleAnalytics ga = GoogleAnalytics.getInstance(this);
+//			tracker = ga.newTracker(R.xml.analytics_id);
+//			ga.enableAutoActivityReports(this);
+//			ga.getLogger().setLogLevel(Logger.LogLevel.VERBOSE);
+//		}
+//	}
+//
+//	public Tracker getTracker(){
+//		startTracking();
+//		return tracker;
+//	}
 }

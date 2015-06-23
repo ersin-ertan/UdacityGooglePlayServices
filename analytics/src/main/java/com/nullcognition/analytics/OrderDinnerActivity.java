@@ -21,11 +21,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
-import com.google.android.gms.analytics.ecommerce.Product;
-import com.google.android.gms.analytics.ecommerce.ProductAction;
-
 
 public class OrderDinnerActivity extends Activity{
 	String selectedDinnerExtrasKey = String.valueOf(R.string.selected_dinner);
@@ -41,72 +36,29 @@ public class OrderDinnerActivity extends Activity{
 	protected void onStart(){
 		super.onStart();
 
-		// Set the heading
 		TextView heading_tv = (TextView) findViewById(R.id.textView_info_heading);
 		heading_tv.setText(getResources().getText(R.string.order_online_heading));
 
-		// Set the text
 		TextView tv = (TextView) findViewById(R.id.textView_info);
 
 		String dinner = getIntent().getStringExtra(selectedDinnerExtrasKey);
-		tv.setText("This is where you will order the selected dinner: \n\n" +
-				dinner);
+		tv.setText("This is where you will order the selected dinner: \n\n" + dinner);
 
 		thisDinnerId = Utility.getDinnerId(dinner);
 		thisDinner = dinner;
-//		Tracker tracker = ((MyApp) getApplication()).getTracker();
-//
-//		tracker.setScreenName("screen name: order dinner activity");
-//		tracker.send(new HitBuilders.ScreenViewBuilder().build());
 
+		sendViewProductHit(dinner, thisDinnerId);
 
-//		String dinnerId = Utility.getDinnerId(dinner);
-//		Utility.showMyToast(dinnerId, this);
-//		sendViewProductHit(dinner, dinnerId);
+		AnalyticCalls.sendProductView();
 	}
 
 	public void addDinnerToCart(View view){
-		sendAddToCartHit();
-	}
-	private void sendAddToCartHit(){
+		AnalyticCalls.sendAddToCartHit(thisDinner, thisDinnerId);
 
-		Product product = new Product()
-				.setName("dinner")
-				.setPrice(5)
-				.setVariant(thisDinner)
-				.setId(thisDinnerId)
-				.setQuantity(1);
-
-		ProductAction productAction = new ProductAction(ProductAction.ACTION_ADD);
-
-
-		Tracker tracker = ((MyApp) getApplication()).getTracker();
-
-		tracker.setScreenName("Add to Cart");
-		tracker.send(new HitBuilders.EventBuilder()
-				.setCategory("shopping steps")
-				.setAction("Add dinner to cart")
-				.setLabel(thisDinner)
-				.addProduct(product)
-				.setProductAction(productAction)
-				.build());
 	}
 
 	public void sendViewProductHit(String dinner, String dinnerId){
-		Product product = new Product()
-				.setName("dinner").setPrice(6).setVariant(dinner).setId(dinnerId).setQuantity(1);
-
-		ProductAction productAction = new ProductAction(ProductAction.ACTION_DETAIL);
-
-		Tracker tracker = ((MyApp) getApplication()).getTracker();
-		tracker.send(new HitBuilders.EventBuilder()
-				.setCategory("shopping stepes")
-				.setAction("view order dinner screen")
-				.setLabel(dinner)
-				.addProduct(product)
-				.build());
+		AnalyticCalls.sendProductViewHit(dinner, dinnerId);
 	}
-
-
 }
 

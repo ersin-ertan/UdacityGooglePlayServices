@@ -15,11 +15,9 @@ public class AllDinners extends ListActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_all_dinners);
 
-		// Get the array of all the dinners
 		Dinner dinner = new Dinner();
 		String[] allDinners = dinner.getAllDinners(this);
 
-		// Create an array adapter
 		/**
 		 ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 		 android.R.layout.simple_list_item_1, allDinners);
@@ -27,7 +25,6 @@ public class AllDinners extends ListActivity{
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				R.layout.show_dinner_in_row, R.id.textview_dinner_row, allDinners);
 
-		// Attach the ArrayAdapter to the list view
 		ListView listView = (ListView) findViewById(android.R.id.list);
 		listView.setAdapter(adapter);
 	}
@@ -35,11 +32,8 @@ public class AllDinners extends ListActivity{
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id){
 
-		// Do something when a list item is clicked
 		super.onListItemClick(l, v, position, id);
-
 		String value = (String) getListView().getItemAtPosition(position);
-
 
 		Utility.showMyToast("selected dinner is " + value, this);
 		Intent intent = new Intent(this, OrderDinnerActivity.class);

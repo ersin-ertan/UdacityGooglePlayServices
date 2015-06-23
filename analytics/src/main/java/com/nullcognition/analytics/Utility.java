@@ -23,14 +23,9 @@ public class Utility{
 
 	public static void showMyToast(String toastText, Context appContext){
 
-		// Show a toast with tonights dinner
-		// Context context = getApplicationContext();
-		// CharSequence text = "Hello toast!";
 		int duration = Toast.LENGTH_SHORT;
-
 		Toast toast = Toast.makeText(appContext, toastText, duration);
 		toast.show();
-
 	}
 
 	public static String[] combine(String[] a, String[] b){

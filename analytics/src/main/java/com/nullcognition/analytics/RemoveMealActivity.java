@@ -42,5 +42,4 @@ public class RemoveMealActivity extends Activity{
 		String dinner = getIntent().getStringExtra(selectedDinnerExtrasKey);
 		tv.setText(dinner + " \n\n" + getResources().getText(R.string.dislike_dinner));
 	}
-
 }
