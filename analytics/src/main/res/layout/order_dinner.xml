@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+	android:background = "@color/white"
+	android:clickable = "false"
+	android:fillViewport = "false"
+	android:id = "@+id/scrollview_dinner_suggestion"
+	android:layout_height = "fill_parent"
+	android:layout_width = "fill_parent"
+	xmlns:android = "http://schemas.android.com/apk/res/android"
+	xmlns:tools = "http://schemas.android.com/tools"
+	>
+
+	<LinearLayout
+		android:id = "@+id/linear_layout_dinner_suggestion"
+		android:layout_height = "wrap_content"
+		android:layout_width = "fill_parent"
+		android:orientation = "vertical"
+		android:paddingBottom = "5dp"
+		android:paddingLeft = "10dp"
+		android:paddingRight = "10dp"
+		android:paddingTop = "1dp"
+		xmlns:android = "http://schemas.android.com/apk/res/android"
+		>
+
+		<fragment
+			android:id = "@+id/show_info_box"
+			android:layout_height = "0dp"
+			android:layout_weight = "1"
+			android:layout_width = "match_parent"
+			android:name = "com.nullcognition.analytics.UseInfoBoxFragment"
+			tools:layout = "@layout/show_info"
+			/>
+
+		<!-- Buttons below will be added and implemented by students -->
+
+		<Button
+			android:id = "@+id/add_to_cart_btn"
+			android:onClick = "addDinnerToCart"
+			android:text = "Add to cart"
+			style = "@style/button_solid"
+			/>
+
+		<!--
+		<Button style="@style/button_solid"
+			android:text="Start checkout"
+			/>
+		<Button style="@style/button_solid"
+			android:text="Checkout step 2 \n\n Payment details"
+			/>
+		<Button style="@style/button_solid"
+			android:text="Complete purchase"
+			/>
+		<Button style="@style/button_solid"
+			android:text="Get refund"
+			/>
+			-->
+
+	</LinearLayout>
+
+</ScrollView>

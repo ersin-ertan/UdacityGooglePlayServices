@@ -25,6 +25,8 @@ import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.HitBuilders;
+
 public class ShowDinnerActivity extends Activity{
 
 	TextView tv;
@@ -65,6 +67,13 @@ public class ShowDinnerActivity extends Activity{
 		Intent intent = new Intent(this, RemoveMealActivity.class);
 		intent.putExtra(selectedDinnerExtrasKey, mDinner);
 		startActivity(intent);
+
+		// added tracker code
+		((MyApp) getApplication()).getTracker()
+		                          .send(new HitBuilders.EventBuilder().setCategory("Dinner actions")
+		                                                              .setAction("dislike dinner choice")
+		                                                              .setLabel(mDinner)
+		                                                              .build());
 	}
 
 	public void showRecipe(View view){

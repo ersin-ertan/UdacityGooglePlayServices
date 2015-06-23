@@ -32,6 +32,8 @@ public class MainActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		((MyApp) getApplication()).startTracking();
+
 		// TODO
 		// Make sure that Analytics tracking has started
 	}
@@ -57,6 +59,10 @@ public class MainActivity extends Activity{
 		});
 		// Show the popup menu
 		popup.show();
+	}
+
+	public void showDinners(final View view){
+		startActivity(new Intent(this, AllDinners.class));
 	}
 
 	/*

@@ -23,6 +23,13 @@
 			android:text = "What's for dinner?"
 			style = "@style/button_solid"
 			/>
+		<Button
+			android:id = "@+id/show_dinners"
+			android:layout_marginTop = "30dp"
+			android:onClick = "showDinners"
+			android:text = "Show Dinners"
+			style = "@style/button_solid"
+			/>
 
 	</LinearLayout>
 </ScrollView>

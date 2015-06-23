@@ -44,4 +44,6 @@ public class Utility{
 	public static String[] combine(String[] a, String[] b, String[] c, String[] d){
 		return combine(combine(a, b), combine(c, d));
 	}
+
+	public static String getDinnerId(String dinner){return dinner.substring(0,2);} // exclusive end
 }
