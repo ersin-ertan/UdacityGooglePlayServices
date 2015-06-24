@@ -24,14 +24,42 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
 
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.tagmanager.ContainerHolder;
+import com.google.android.gms.tagmanager.TagManager;
+
+import java.util.concurrent.TimeUnit;
+
 
 public class MainActivity extends Activity{
+
+	TagManager tagManager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 //		((MyApp) getApplication()).startTracking();
+		loadGTMContainer();
+	}
+	private void loadGTMContainer(){
+		tagManager = ((MyApp) getApplication()).getTagManager();
+		tagManager.setVerboseLoggingEnabled(true);
+		PendingResult pendingResult = tagManager.loadContainerPreferFresh(MyApp.s + "-PC4NQH",
+				R.raw.gtm_pc4nqh_v1);
+
+		pendingResult.setResultCallback(new ResultCallback<ContainerHolder>(){
+			@Override
+			public void onResult(final ContainerHolder containerHolder){
+				if(!containerHolder.getStatus().isSuccess()){
+					return;
+				}
+				containerHolder.refresh();
+
+				((MyApp) getApplication()).setContainerHolder(containerHolder);
+			}
+		}, 2, TimeUnit.SECONDS);
 	}
 
 	public void showFoodPrefsMenu(View view){
@@ -54,6 +82,15 @@ public class MainActivity extends Activity{
 		startActivity(new Intent(this, AllDinners.class));
 	}
 
+	public void showDaily(final View view){
+
+		String dinnerChoice = new Dinner(this, 0).getDinnerTonight(); // 0 will default to unrestricted
+		Intent dinnerIntent = new Intent(this, ShowDaily.class);
+
+		dinnerIntent.putExtra(String.valueOf(R.string.selected_dinner), dinnerChoice);
+		startActivity(dinnerIntent);
+	}
+
 	public String getDinnerSuggestion(int item){
 
 		String dinnerChoice = new Dinner(this, item).getDinnerTonight();
@@ -64,5 +101,6 @@ public class MainActivity extends Activity{
 
 		return dinnerChoice;
 	}
+
 }
 

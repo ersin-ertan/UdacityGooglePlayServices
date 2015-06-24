@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name = "ga_trackingId">XXXXXXXXX</string>
+	<string name = "ga_trackingId">UA-64272290-1</string>
 	<bool name = "ga_autoActivityTracking">false</bool>
+	<bool name = "ga_reportUncaughtExceptions">true</bool>
 	<screenName name = "com.nullcognition.analytics.MainActivity">Home(Main) Screen</screenName>
-
 </resources>
 
 
-<!--toggle the ga auto activity tracking if you are seding specifc screen hits with the HitBuilders class-->
+	<!--toggle the ga auto activity tracking if you are seding specifc screen hits with the HitBuilders class-->
 	<!-- tracking set to true as part of the config file, can also config screen names that will show up on the analytics dash board, else the fully qualified path name is used-->
 
 	<!--Can do session time outs and other configurable options,

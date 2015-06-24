@@ -2,13 +2,20 @@ package com.nullcognition.analytics;// Created by ersin on 22/06/15
 
 import android.app.Application;
 
-import com.google.android.gms.analytics.GoogleAnalytics;
-import com.google.android.gms.analytics.Logger;
-import com.google.android.gms.analytics.Tracker;
+import com.google.android.gms.tagmanager.ContainerHolder;
+import com.google.android.gms.tagmanager.TagManager;
 
 public class MyApp extends Application{
 
-	Tracker tracker;
+	private TagManager tagManager;
+	private ContainerHolder containerHolder;
+
+	public ContainerHolder getContainerHolder(){
+		return containerHolder;
+	}
+	public void setContainerHolder(final ContainerHolder containerHolder){
+		this.containerHolder = containerHolder;
+	}
 
 	@Override
 	public void onCreate(){
@@ -31,4 +38,11 @@ public class MyApp extends Application{
 //		startTracking();
 //		return tracker;
 //	}
+
+	public TagManager getTagManager(){
+		if(tagManager == null){ tagManager = TagManager.getInstance(this);}
+		return tagManager;
+	}
+
+	static final String s = "GTM";
 }

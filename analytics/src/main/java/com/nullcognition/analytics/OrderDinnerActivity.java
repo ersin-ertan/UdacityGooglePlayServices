@@ -53,7 +53,7 @@ public class OrderDinnerActivity extends Activity{
 		AnalyticCalls.sendProductView();
 	}
 
-	public void startCheckoutProcess(final View view){
+ 	public void startCheckoutProcess(final View view){
 		AnalyticCalls.sendStartCheckoutProcessHit(thisDinner, thisDinnerId);
 	}
 
