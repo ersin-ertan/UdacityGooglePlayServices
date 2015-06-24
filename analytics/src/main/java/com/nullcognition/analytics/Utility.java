@@ -19,6 +19,9 @@ package com.nullcognition.analytics;
 import android.content.Context;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Utility{
 
 	public static void showMyToast(String toastText, Context appContext){
@@ -40,5 +43,17 @@ public class Utility{
 		return combine(combine(a, b), combine(c, d));
 	}
 
-	public static String getDinnerId(String dinner){return dinner.substring(0,2);} // exclusive end
+	public static String getDinnerId(String dinner){return dinner.substring(0, 2);} // exclusive end
+	// Gets the current time as a String
+	public static String getCurrentTime(){
+		Date curDate = new Date();
+		SimpleDateFormat format = format = new SimpleDateFormat("dd-M hh:mm:ss");
+		return format.format(curDate);
+	}
+
+	public static String getUniqueTransactionId(String productId){
+		return ("T-" + getCurrentTime() + productId);
+	}
+
+
 }

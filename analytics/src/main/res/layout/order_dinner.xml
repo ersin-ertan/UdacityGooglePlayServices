@@ -40,20 +40,33 @@
 			style = "@style/button_solid"
 			/>
 
-		<!--
-		<Button style="@style/button_solid"
-			android:text="Start checkout"
+		<Button
+			android:id = "@+id/start_checkout_btn"
+			android:onClick = "startCheckoutProcess"
+			android:text = "Start checkout"
+			android:visibility = "invisible"
+			style = "@style/button_solid"
 			/>
-		<Button style="@style/button_solid"
-			android:text="Checkout step 2 \n\n Payment details"
+
+		<Button
+			android:id = "@+id/purchase"
+			android:onClick = "purchase"
+			android:text = "Checkout step 2 \n\n Payment details"
+			android:visibility = "invisible"
+			style = "@style/button_solid"
 			/>
-		<Button style="@style/button_solid"
-			android:text="Complete purchase"
+
+		<Button
+			android:text = "Complete purchase"
+			android:visibility = "invisible"
+			style = "@style/button_solid"
 			/>
-		<Button style="@style/button_solid"
-			android:text="Get refund"
+
+		<Button
+			android:text = "Get refund"
+			android:visibility = "invisible"
+			style = "@style/button_solid"
 			/>
-			-->
 
 	</LinearLayout>
 

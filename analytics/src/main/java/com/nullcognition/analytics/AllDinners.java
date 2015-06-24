@@ -3,6 +3,7 @@ package com.nullcognition.analytics;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -10,9 +11,11 @@ import android.widget.ListView;
 public class AllDinners extends ListActivity{
 
 	String selectedDinnerExtrasKey = String.valueOf(R.string.selected_dinner);
+	private long timingToShowList = 0;
 
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		timingToShowList = System.nanoTime();
 		setContentView(R.layout.activity_all_dinners);
 
 		Dinner dinner = new Dinner();
@@ -29,6 +32,14 @@ public class AllDinners extends ListActivity{
 		listView.setAdapter(adapter);
 	}
 
+	@Override
+	protected void onStart(){
+		super.onStart();
+		long duration = System.nanoTime() - timingToShowList;
+		AnalyticCalls.timingOfTask(duration);
+		Log.e("logErr", "sent timing to api");
+
+	}
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id){
 

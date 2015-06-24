@@ -16,6 +16,10 @@ import com.google.android.gms.analytics.ecommerce.ProductAction;
 public enum AnalyticCalls{
 	INSTANCE;
 
+	// refunds are also available but expire in analytics after 6 months,
+	// you must keep track of the product id of purchases, which are required
+	// as the refund parameter
+
 	private static Tracker tracker;
 
 	public static void init(Application application){
@@ -50,6 +54,21 @@ public enum AnalyticCalls{
 				.build());
 	}
 
+	public static void sendStartCheckoutProcessHit(String variantAndLabel, String dinnerId){
+		// variantAndLabel is the dinner
+		Product product = newProduct(variantAndLabel, dinnerId);
+		ProductAction productAction = new ProductAction(ProductAction.ACTION_CHECKOUT);
+
+		tracker.setScreenName("Checkout");
+		tracker.send(new HitBuilders.EventBuilder()
+				.setCategory("Checkout")
+				.setAction("Checkout Items")
+				.setLabel(variantAndLabel)
+				.addProduct(product)
+				.setProductAction(productAction)
+				.build());
+	}
+
 	public static void sendProductViewHit(String variantAndLabel, String dinnerId){
 		// variantAndLabel is the dinner
 		Product product = newProduct(variantAndLabel, dinnerId);
@@ -64,6 +83,24 @@ public enum AnalyticCalls{
 				.build());
 	}
 
+	public static void purchase(final String dinnerId){
+		Product product = newProduct(dinnerId, dinnerId);
+		ProductAction productAction = new ProductAction(ProductAction.ACTION_PURCHASE)
+				.setTransactionId(Utility.getUniqueTransactionId(dinnerId));
+//				.setTransactionRevenue()
+//				.setTransactionTax()
+//				.setProductActionList("All Products"); // if multi products
+
+		tracker.send(new HitBuilders.EventBuilder()
+				.setCategory("purchase")
+				.setAction("purchase")
+				.setLabel("purchase")
+				.addProduct(product)
+						// .addProduct(moreProducts) which should be add products(list)
+				.setProductAction(productAction)
+				.build());
+	}
+
 	private static Product newProduct(final String variantAndLabel, final String dinnerId){
 		return new Product().setName("Dinner")
 		                    .setPrice(5)
@@ -72,12 +109,40 @@ public enum AnalyticCalls{
 		                    .setQuantity(1);
 	}
 
+	public static void timingOfTask(long elapsedTime){
+		long nanoToMili = elapsedTime / 1000000;
+		tracker.send(new HitBuilders.TimingBuilder()
+				.setCategory("list all dinners")
+				.setValue(nanoToMili)
+				.setLabel("display list")
+				.setVariable("duration")
+				.build());
+
+
+	}
+
+	private static void checkoutSteps(){
+		ProductAction pa = new ProductAction(ProductAction.ACTION_CHECKOUT_OPTION)
+				.setCheckoutStep(1); // correspond with the funnel steps in
+		// admin > ecommerce > Enhanced ecommerce settings > funnels created
+	}
+
 	public static void sendProductView(){
 
 		tracker.setScreenName("screen name: order dinner activity");
 		tracker.send(new HitBuilders.ScreenViewBuilder().build());
-
-
 	}
+
+	// 	<bool name = "ga_reportUncaughtExceptions">true</bool>
+// in xml to catch uncaught
+	public static void sendCaughtException(String msg){
+		tracker.send(new HitBuilders.ExceptionBuilder()
+				.setDescription(msg)
+				.setFatal(true)
+				.build());
+	}
+
+	// https://developers.google.com/analytics/devguides/collection/android/v4/customdimsmets
+	// for custom metrics
 }
 

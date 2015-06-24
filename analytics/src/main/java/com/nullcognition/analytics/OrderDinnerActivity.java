@@ -19,6 +19,7 @@ package com.nullcognition.analytics;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -52,9 +53,27 @@ public class OrderDinnerActivity extends Activity{
 		AnalyticCalls.sendProductView();
 	}
 
+	public void startCheckoutProcess(final View view){
+		AnalyticCalls.sendStartCheckoutProcessHit(thisDinner, thisDinnerId);
+	}
+
 	public void addDinnerToCart(View view){
 		AnalyticCalls.sendAddToCartHit(thisDinner, thisDinnerId);
+		Button button = (Button) findViewById(R.id.start_checkout_btn);
+		button.setVisibility(View.VISIBLE);
 
+		button = (Button) findViewById(R.id.add_to_cart_btn);
+		button.setVisibility(View.INVISIBLE);
+	}
+
+	public void purchase(final View view){
+		AnalyticCalls.purchase(thisDinnerId);
+
+		Button button = (Button) findViewById(R.id.purchase);
+		button.setVisibility(View.VISIBLE);
+
+		button = (Button) findViewById(R.id.start_checkout_btn);
+		button.setVisibility(View.INVISIBLE);
 	}
 
 	public void sendViewProductHit(String dinner, String dinnerId){
