@@ -22,6 +22,7 @@ public class MyApp extends Application{
 		super.onCreate();
 
 		AnalyticCalls.init(this);
+
 	}
 //	public void startTracking(){
 //		// if low memory killer was to clean resources of the app, this would spawn a new one
@@ -41,6 +42,7 @@ public class MyApp extends Application{
 
 	public TagManager getTagManager(){
 		if(tagManager == null){ tagManager = TagManager.getInstance(this);}
+		tagManager.setVerboseLoggingEnabled(true);
 		return tagManager;
 	}
 

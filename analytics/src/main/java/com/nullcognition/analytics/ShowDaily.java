@@ -45,6 +45,14 @@ public class ShowDaily extends Activity{ // did not work because ShowDaily exten
 	}
 
 	public String getDailySpecial(){
+
+		// some new daily special was overriding the second attempt to view the daily special
+		// with the value of 'some new daily special version 3' because the trigger is set to always
+		// which seems to override the one shot like nature of predefined daily specials
+		// thus I deleted the unrestricted variable and let the en language be the default, general but incorrect
+		// solution, if a default variable is needed then make one, a language wide variable should not be place
+		// holder for a specialized data field like daily_special
+
 		ContainerHolder containerHolder = ((MyApp) getApplication()).getContainerHolder();
 		String value = containerHolder.getContainer().getString("daily_special");
 //		tagmanager.google.com

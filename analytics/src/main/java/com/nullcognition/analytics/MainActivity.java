@@ -27,6 +27,7 @@ import android.widget.PopupMenu;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.tagmanager.ContainerHolder;
+import com.google.android.gms.tagmanager.DataLayer;
 import com.google.android.gms.tagmanager.TagManager;
 
 import java.util.concurrent.TimeUnit;
@@ -84,11 +85,21 @@ public class MainActivity extends Activity{
 
 	public void showDaily(final View view){
 
-		String dinnerChoice = new Dinner(this, 0).getDinnerTonight(); // 0 will default to unrestricted
-		Intent dinnerIntent = new Intent(this, ShowDaily.class);
+		android.widget.PopupMenu popup = new android.widget.PopupMenu(this, view);
+		MenuInflater inflater = popup.getMenuInflater();
+		inflater.inflate(R.menu.food_prefs_menu, popup.getMenu());
 
-		dinnerIntent.putExtra(String.valueOf(R.string.selected_dinner), dinnerChoice);
-		startActivity(dinnerIntent);
+		popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener(){
+			@Override
+			public boolean onMenuItemClick(MenuItem item){
+
+				putFoodPrefInDataLayer(item);
+				startDailySpecialActivity();
+				return true;
+			}
+		});
+		popup.show();
+
 	}
 
 	public String getDinnerSuggestion(int item){
@@ -100,6 +111,55 @@ public class MainActivity extends Activity{
 		startActivity(dinnerIntent);
 
 		return dinnerChoice;
+	}
+
+	public void putFoodPrefInDataLayer(MenuItem item){
+
+		TagManager tm = ((MyApp) getApplication()).getTagManager();
+		DataLayer dl = tm.getDataLayer();
+		String foodPref;
+
+		switch(item.getItemId()){
+			case R.id.vegan_pref:
+				foodPref = "vegan";
+				break;
+			case R.id.vegetarian_pref:
+				foodPref = "vegetarian";
+				break;
+			case R.id.fish_pref:
+				foodPref = "fish";
+				break;
+			case R.id.meat_pref:
+				foodPref = "meat";
+				break;
+			default:
+				foodPref = "unrestricted";
+		}
+		dl.push("food_pref", foodPref);
+
+
+	}
+
+	public void startDailySpecialActivity(){
+
+		// old way, without data layer
+//		String dinnerChoice = new Dinner(this, 0).getDinnerTonight(); // 0 will default to unrestricted
+//		Intent dinnerIntent = new Intent(this, ShowDaily.class);
+//		dinnerIntent.putExtra(String.valueOf(R.string.selected_dinner), dinnerChoice);
+//		startActivity(dinnerIntent);
+
+		// new way will poll data layer for type
+		startActivity(new Intent(this, ShowDaily.class));
+
+		// push code into data layer, then tag manager will push the changes into analytics
+		DataLayer dl =  tagManager.getDataLayer();
+		dl.pushEvent("openScreen", DataLayer.mapOf("screen-name", "Show Daily Special"));
+		// value collection variable - trigger fires which value to use
+		// Tag - trigger fires data forwarding(according to the rules set up in the tag)
+
+
+
+
 	}
 
 }

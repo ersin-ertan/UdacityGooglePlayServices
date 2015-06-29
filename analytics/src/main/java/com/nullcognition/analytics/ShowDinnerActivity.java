@@ -25,6 +25,9 @@ import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import com.google.android.gms.tagmanager.DataLayer;
+import com.google.android.gms.tagmanager.TagManager;
+
 public class ShowDinnerActivity extends Activity{
 
 	TextView tv;
@@ -61,7 +64,13 @@ public class ShowDinnerActivity extends Activity{
 		intent.putExtra(selectedDinnerExtrasKey, mDinner);
 		startActivity(intent);
 
-		AnalyticCalls.sendDislikeEvent(mDinner);
+		TagManager tm = ((MyApp)getApplication()).getTagManager();
+		DataLayer dl = tm.getDataLayer();
+
+		dl.pushEvent("openScreen", DataLayer.mapOf("screen-name", "Dislike dinner", "selected-dinner", mDinner));
+
+		// dont want two hits
+		// AnalyticCalls.sendDislikeEvent(mDinner);
 	}
 
 	public void showRecipe(View view){
