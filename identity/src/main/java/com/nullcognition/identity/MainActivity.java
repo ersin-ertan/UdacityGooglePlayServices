@@ -30,7 +30,10 @@ import com.google.android.gms.plus.model.people.Person;
 // over the air downloads allows web site apps(with a certain rating) to allow free apps to be installed
 // on the android device
 
-public class MainActivity extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, View.OnClickListener{
+public class MainActivity extends Activity implements
+                                           GoogleApiClient.ConnectionCallbacks,
+                                           GoogleApiClient.OnConnectionFailedListener,
+                                           View.OnClickListener{
 
 	public static final int State_Signed_In = 0;
 	public static final int State_Sign_In = 1;
