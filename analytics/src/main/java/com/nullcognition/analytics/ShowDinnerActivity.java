@@ -100,5 +100,4 @@ public class ShowDinnerActivity extends Activity{
 		mDinner = dinner.getDinnerTonight();
 		tv.setText(mDinner);
 	}
-
 }
